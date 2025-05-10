@@ -118,7 +118,7 @@ public class InteractController : MonoBehaviour
         Assert.IsNotNull(pickupController);
 
         // First try to drop existing ingredient
-        if (pickupController.TryDropCurrentIngredient())
+        if (pickupController.TryDropCurrentIngredient(out _))
             return;
 
         // Add other fallback handling here

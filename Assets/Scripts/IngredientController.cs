@@ -9,6 +9,10 @@ public class IngredientController : MonoBehaviour, IInteractable
         PickedUp,
     }
 
+    [Header("Settings")]
+    [SerializeField] private IngredientSettingsSO _settingsSO;
+
+    [Header("References")]
     [SerializeField] private MeshRenderer _meshRenderer;
     [SerializeField] private Material _idleMaterial;
     [SerializeField] private Material _hoverMaterial;
@@ -26,6 +30,7 @@ public class IngredientController : MonoBehaviour, IInteractable
         Assert.IsNotNull(_rigidbody);
         Assert.IsNotNull(_collider);
 
+        Assert.IsNotNull(_settingsSO);
         Assert.IsNotNull(_meshRenderer);
         Assert.IsNotNull(_idleMaterial);
         Assert.IsNotNull(_hoverMaterial);
@@ -66,5 +71,10 @@ public class IngredientController : MonoBehaviour, IInteractable
         _rigidbody.isKinematic = false;
         _collider.enabled = true;
         _state = EState.Idle;
+    }
+
+    public void Throw(Vector3 normalizedDirection)
+    {
+        _rigidbody.AddForce(normalizedDirection * _settingsSO.ThrowForce, ForceMode.Impulse);
     }
 }
