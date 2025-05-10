@@ -24,6 +24,15 @@ public class MovementController : MonoBehaviour
 
         directionVector.Normalize();
 
+        // Rotate
+        if (directionVector != Vector3.zero)
+        {
+            var targetRotation = Quaternion.LookRotation(directionVector, transform.up);
+            var rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _settingsSO.RotationSpeed * Time.fixedDeltaTime);
+            _rigidbody.MoveRotation(rotation);
+        }
+
+        // Move
         _rigidbody.velocity = directionVector * _settingsSO.Speed;
     }
 }

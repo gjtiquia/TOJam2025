@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: MovementSettingsSO
   m_EditorClassIdentifier: 
   Speed: 8
+  RotationSpeed: 600

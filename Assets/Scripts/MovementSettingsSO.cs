@@ -4,4 +4,5 @@ using UnityEngine;
 public class MovementSettingsSO : ScriptableObject
 {
     [Min(0)] public float Speed;
+    [Min(0)] public float RotationSpeed;
 }
