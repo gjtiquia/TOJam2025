@@ -5,12 +5,15 @@ using UnityEngine.Assertions;
 public class PotController : MonoBehaviour, IInteractable
 {
     [SerializeField] private GameObject _hoverVisual;
+    [SerializeField] private GameObject _soupPrefab;
 
     private List<IIngredientData> _soupIngredients = new();
 
     private void Awake()
     {
         Assert.IsNotNull(_hoverVisual);
+        Assert.IsNotNull(_soupPrefab);
+
         SetIsHoveredState(false);
     }
 
@@ -23,10 +26,13 @@ public class PotController : MonoBehaviour, IInteractable
     {
         // The order should mimic Interact()
 
-        if (CanDropIngredient(context, out _))
+        var pickupController = context.InteractInstigator.GetComponent<PickupController>();
+        Assert.IsNotNull(pickupController);
+
+        if (CanDropIngredient(pickupController))
             return true;
 
-        if (CanPickupSoup())
+        if (CanPickupSoup(pickupController))
             return true;
 
         // false by default
@@ -37,24 +43,24 @@ public class PotController : MonoBehaviour, IInteractable
     {
         // The order should mimic IsInteractable()
 
-        if (CanDropIngredient(context, out var pickupController))
+        var pickupController = context.InteractInstigator.GetComponent<PickupController>();
+        Assert.IsNotNull(pickupController);
+
+        if (CanDropIngredient(pickupController))
         {
             DropIngredient(pickupController);
             return;
         }
 
-        if (CanPickupSoup())
+        if (CanPickupSoup(pickupController))
         {
-            PickupSoup();
+            PickupSoup(pickupController);
             return;
         }
     }
 
-    private bool CanDropIngredient(IInteractContext context, out PickupController pickupController)
+    private bool CanDropIngredient(PickupController pickupController)
     {
-        pickupController = context.InteractInstigator.GetComponent<PickupController>();
-        if (pickupController == null) return false;
-
         var isHoldingAnItem = pickupController.IsHoldingAnItem();
         if (!isHoldingAnItem) return false;
 
@@ -75,17 +81,26 @@ public class PotController : MonoBehaviour, IInteractable
         }
     }
 
-    private bool CanPickupSoup()
+    private bool CanPickupSoup(PickupController pickupController)
     {
-        // TODO
+        // allow to pickup soup even if holding something
+        // will simply "swap" the holding object
+
         return _soupIngredients.Count > 0;
     }
 
-    private void PickupSoup()
+    private void PickupSoup(PickupController pickupController)
     {
         Debug.Log($"Pot.PickupSoup: total ingredients: {_soupIngredients.Count}");
 
-        // TODO
+        var soupInstance = Instantiate(_soupPrefab);
+        var soup = soupInstance.GetComponent<SoupController>();
+
+        // TODO : init soup
+
+        pickupController.PickupItem(soup); // this will automatically throw any held item (if any)
+
+        // Cleanup
         _soupIngredients.Clear();
     }
 }

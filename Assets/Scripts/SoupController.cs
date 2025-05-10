@@ -1,17 +1,7 @@
 using UnityEngine;
 using UnityEngine.Assertions;
 
-public enum EFlavour
-{
-    // TODO
-}
-
-public interface IIngredientData
-{
-    // TODO : list of flavours
-}
-
-public class IngredientController : MonoBehaviour, IInteractable, IPickupItem
+public class SoupController : MonoBehaviour, IPickupItem, IInteractable
 {
     public enum EState
     {
@@ -19,13 +9,6 @@ public class IngredientController : MonoBehaviour, IInteractable, IPickupItem
         PickedUp,
     }
 
-    [Header("Settings")]
-    [SerializeField] private IngredientSettingsSO _settingsSO;
-
-    [Header("References")]
-    [SerializeField] private MeshRenderer _meshRenderer;
-    [SerializeField] private Material _idleMaterial;
-    [SerializeField] private Material _hoverMaterial;
     [SerializeField] private GameObject _hoverVisual;
 
     private Rigidbody _rigidbody;
@@ -40,11 +23,6 @@ public class IngredientController : MonoBehaviour, IInteractable, IPickupItem
 
         Assert.IsNotNull(_rigidbody);
         Assert.IsNotNull(_collider);
-
-        Assert.IsNotNull(_settingsSO);
-        Assert.IsNotNull(_meshRenderer);
-        Assert.IsNotNull(_idleMaterial);
-        Assert.IsNotNull(_hoverMaterial);
         Assert.IsNotNull(_hoverVisual);
 
         SetIsHoveredState(false);
@@ -57,7 +35,6 @@ public class IngredientController : MonoBehaviour, IInteractable, IPickupItem
 
     public void SetIsHoveredState(bool isHovered)
     {
-        // _meshRenderer.material = isHovered ? _hoverMaterial : _idleMaterial; // prototype phase stuff
         _hoverVisual.SetActive(isHovered);
     }
 
@@ -86,27 +63,5 @@ public class IngredientController : MonoBehaviour, IInteractable, IPickupItem
     public void Throw(Vector3 normalizedDirection)
     {
         _rigidbody.AddForce(normalizedDirection * PickupSettingsSO.Instance.ThrowForce, ForceMode.Impulse);
-    }
-
-    public IIngredientData Consume()
-    {
-        var ingredientData = IngredientData.Create();
-
-        // TODO : object pool maybe
-        Destroy(this.gameObject);
-
-        return ingredientData;
-    }
-
-    // HELPER CLASSES
-    private struct IngredientData : IIngredientData
-    {
-        public static IngredientData Create()
-        {
-            return new()
-            {
-
-            };
-        }
     }
 }
