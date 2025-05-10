@@ -2177,6 +2177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hoverVisual: {fileID: 1808344403}
+  _soupPrefab: {fileID: 3684617643860710002, guid: ff661a834b8bf864aad71b7ca3828ad8, type: 3}
 --- !u!1001 &1899898815
 PrefabInstance:
   m_ObjectHideFlags: 0

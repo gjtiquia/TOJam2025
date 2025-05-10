@@ -11,9 +11,19 @@ public interface IPickupItem
 
 public class PickupController : MonoBehaviour
 {
+    [Header("Settings")]
+    [SerializeField] private PickupSettingsSO _settingsSO;
+
+    [Header("References")]
     [SerializeField] private Transform _pickupAnchor;
 
     private IPickupItem _currentPickupItem = null;
+
+    private void Awake()
+    {
+        Assert.IsNotNull(_settingsSO);
+        PickupSettingsSO.Instance = _settingsSO;
+    }
 
     public bool IsHoldingAnItem()
     {
