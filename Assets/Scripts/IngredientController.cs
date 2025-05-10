@@ -16,6 +16,7 @@ public class IngredientController : MonoBehaviour, IInteractable
     [SerializeField] private MeshRenderer _meshRenderer;
     [SerializeField] private Material _idleMaterial;
     [SerializeField] private Material _hoverMaterial;
+    [SerializeField] private GameObject _hoverVisual;
 
     private Rigidbody _rigidbody;
     private Collider _collider;
@@ -34,8 +35,9 @@ public class IngredientController : MonoBehaviour, IInteractable
         Assert.IsNotNull(_meshRenderer);
         Assert.IsNotNull(_idleMaterial);
         Assert.IsNotNull(_hoverMaterial);
+        Assert.IsNotNull(_hoverVisual);
 
-        _meshRenderer.material = _idleMaterial;
+        SetIsHoveredState(false);
     }
 
     public bool IsInteractable()
@@ -45,8 +47,8 @@ public class IngredientController : MonoBehaviour, IInteractable
 
     public void SetIsHoveredState(bool isHovered)
     {
-        // TODO : temp handling
-        _meshRenderer.material = isHovered ? _hoverMaterial : _idleMaterial;
+        // _meshRenderer.material = isHovered ? _hoverMaterial : _idleMaterial; // prototype phase stuff
+        _hoverVisual.SetActive(isHovered);
     }
 
     public void Interact(IInteractContext context)
