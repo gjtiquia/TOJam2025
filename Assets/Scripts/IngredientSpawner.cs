@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class IngredientSpawner : MonoBehaviour
@@ -5,7 +6,7 @@ public class IngredientSpawner : MonoBehaviour
     public static IngredientSpawner Instance;
 
     [Header("Prefabs")]
-    [SerializeField] private GameObject _ingredientPrefab;
+    [SerializeField] private List<IngredientController> _ingredientPrefabs;
 
     [Header("References")]
     [SerializeField] private BoxCollider _boxCollider;
@@ -24,6 +25,12 @@ public class IngredientSpawner : MonoBehaviour
         var randZ = Random.Range(bounds.min.z, bounds.max.z);
         var randPos = new Vector3(randX, randY, randZ);
 
-        Instantiate(_ingredientPrefab, randPos, Quaternion.identity);
+        var randomIndex = Random.Range(0, _ingredientPrefabs.Count);
+        var randomPrefab = _ingredientPrefabs[randomIndex];
+
+        var instance = Instantiate(randomPrefab, randPos, Quaternion.identity);
+
+        var randomDirection = Random.onUnitSphere;
+        instance.Throw(randomDirection);
     }
 }

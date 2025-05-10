@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c34035f29e01c2488228a2de5014053, type: 3}
-  m_Name: IngredientSettingsSO
+  m_Name: Paprika_IngredientsSettingsSO
   m_EditorClassIdentifier: 
-  ThrowForce: 0.6
+  Flavours: 01000000

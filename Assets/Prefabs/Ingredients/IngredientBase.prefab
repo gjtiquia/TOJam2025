@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 5166030734415261098}
   - component: {fileID: 3483913694595584004}
   m_Layer: 0
-  m_Name: Ingredient
+  m_Name: IngredientBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
