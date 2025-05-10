@@ -164,8 +164,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ec027630a246764489fe5fa52d7c837, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hoverVisual: {fileID: 2126337804995404603}
   _soupPrefab: {fileID: 3684617643860710002, guid: ff661a834b8bf864aad71b7ca3828ad8, type: 3}
+  _hoverVisual: {fileID: 2126337804995404603}
+  _potSoupVisual: {fileID: 8805471005289085374}
 --- !u!1 &7213482857625307089
 GameObject:
   m_ObjectHideFlags: 0
@@ -434,5 +435,10 @@ PrefabInstance:
 --- !u!4 &8176427601732150020 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 34df490b220714deb8e75016f111a5e9, type: 3}
+  m_PrefabInstance: {fileID: 8570975610766935279}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8805471005289085374 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 34df490b220714deb8e75016f111a5e9, type: 3}
   m_PrefabInstance: {fileID: 8570975610766935279}
   m_PrefabAsset: {fileID: 0}

@@ -4,8 +4,12 @@ using UnityEngine.Assertions;
 
 public class PotController : MonoBehaviour, IInteractable
 {
-    [SerializeField] private GameObject _hoverVisual;
+    [Header("Prefabs")]
     [SerializeField] private GameObject _soupPrefab;
+
+    [Header("References")]
+    [SerializeField] private GameObject _hoverVisual;
+    [SerializeField] private GameObject _potSoupVisual;
 
     private List<IIngredientData> _soupIngredients = new();
 
@@ -13,8 +17,10 @@ public class PotController : MonoBehaviour, IInteractable
     {
         Assert.IsNotNull(_hoverVisual);
         Assert.IsNotNull(_soupPrefab);
+        Assert.IsNotNull(_potSoupVisual);
 
         SetIsHoveredState(false);
+        _potSoupVisual.SetActive(false);
     }
 
     public void SetIsHoveredState(bool isHovered)
@@ -76,6 +82,7 @@ public class PotController : MonoBehaviour, IInteractable
         {
             var ingredientData = ((IngredientController)droppedItem).Consume();
             _soupIngredients.Add(ingredientData);
+            _potSoupVisual.SetActive(true);
 
             Debug.Log($"Pot.DropIngredient: total ingredients: {_soupIngredients.Count}");
         }
@@ -102,5 +109,6 @@ public class PotController : MonoBehaviour, IInteractable
 
         // Cleanup
         _soupIngredients.Clear();
+        _potSoupVisual.SetActive(false);
     }
 }
