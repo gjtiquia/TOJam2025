@@ -35,7 +35,7 @@ public class InputController : MonoBehaviour
         inputStruct.IsLeftPressed = Input.GetKey(KeyCode.A);
         inputStruct.IsRightPressed = Input.GetKey(KeyCode.D);
 
-        inputStruct.IsInteractPressed = Input.GetKey(KeyCode.F);
+        inputStruct.IsInteractPressed = Input.GetKey(KeyCode.F) || Input.GetKey(KeyCode.Mouse0);
 
         _cachedInput = inputStruct;
     }

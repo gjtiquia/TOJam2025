@@ -784,7 +784,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.33
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -895,6 +895,7 @@ GameObject:
   - component: {fileID: 753343151}
   - component: {fileID: 753343150}
   - component: {fileID: 753343152}
+  - component: {fileID: 753343153}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1001,6 +1002,19 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _interactTriggerCollider: {fileID: 502415013}
+--- !u!114 &753343153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 753343143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6e841abe4077944e82f2a7d4ff3bd91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pickupAnchor: {fileID: 903396695}
 --- !u!1 &763399104
 GameObject:
   m_ObjectHideFlags: 0
@@ -1043,7 +1057,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 903396695}
-  - component: {fileID: 903396696}
   m_Layer: 0
   m_Name: PickupAnchor
   m_TagString: Untagged
@@ -1060,39 +1073,12 @@ Transform:
   m_GameObject: {fileID: 903396694}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.098, z: 0.928}
+  m_LocalPosition: {x: 0, y: 0.205, z: 0.778}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 753343147}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &903396696
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 903396694}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &911333777
 GameObject:
   m_ObjectHideFlags: 0
@@ -1992,19 +1978,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7337088270319781942, guid: 39de04f57e0cde7498f6eda81c581ba8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.01
+      value: -2.61
       objectReference: {fileID: 0}
     - target: {fileID: 7337088270319781942, guid: 39de04f57e0cde7498f6eda81c581ba8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.705
       objectReference: {fileID: 0}
     - target: {fileID: 7337088270319781942, guid: 39de04f57e0cde7498f6eda81c581ba8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.14
+      value: 3.9525275
       objectReference: {fileID: 0}
     - target: {fileID: 7337088270319781942, guid: 39de04f57e0cde7498f6eda81c581ba8, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: -0.018412158
       objectReference: {fileID: 0}
     - target: {fileID: 7337088270319781942, guid: 39de04f57e0cde7498f6eda81c581ba8, type: 3}
       propertyPath: m_LocalRotation.x
@@ -2012,7 +1998,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7337088270319781942, guid: 39de04f57e0cde7498f6eda81c581ba8, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.99983054
       objectReference: {fileID: 0}
     - target: {fileID: 7337088270319781942, guid: 39de04f57e0cde7498f6eda81c581ba8, type: 3}
       propertyPath: m_LocalRotation.z
@@ -2048,6 +2034,6 @@ SceneRoots:
   - {fileID: 1907643404}
   - {fileID: 592260237}
   - {fileID: 753343147}
-  - {fileID: 4524576268516587467}
   - {fileID: 1899898815}
   - {fileID: 1954245978}
+  - {fileID: 4524576268516587467}

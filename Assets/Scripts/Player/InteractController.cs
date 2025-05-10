@@ -5,7 +5,12 @@ public interface IInteractable
 {
     public bool IsInteractable();
     public void SetIsHoveredState(bool isHovered);
-    public void Interact();
+    public void Interact(IInteractContext context);
+}
+
+public interface IInteractContext
+{
+    public GameObject InteractInstigator { get; }
 }
 
 public class InteractController : MonoBehaviour
@@ -21,6 +26,13 @@ public class InteractController : MonoBehaviour
     private IInteractable _nearestInteractable = null;
 
     private bool _wasInteractPressed = false; // Prevent interact from calling for each tick interact is pressed
+
+    private IInteractContext _interactContext;
+
+    private void Awake()
+    {
+        _interactContext = new InteractContext(this.gameObject);
+    }
 
     public void UpdateNearestInteractableOnFixedUpdate()
     {
@@ -85,10 +97,41 @@ public class InteractController : MonoBehaviour
         if (_wasInteractPressed && !input.IsInteractPressed)
             _wasInteractPressed = false;
 
-        if (!_wasInteractPressed && input.IsInteractPressed && _nearestInteractable != null && _nearestInteractable.IsInteractable())
+        if (!_wasInteractPressed && input.IsInteractPressed)
         {
             _wasInteractPressed = true;
-            _nearestInteractable.Interact();
+
+            if (_nearestInteractable != null && _nearestInteractable.IsInteractable())
+            {
+                _nearestInteractable.Interact(_interactContext);
+            }
+            else
+            {
+                OnInteractPressedFallback();
+            }
+        }
+    }
+
+    private void OnInteractPressedFallback()
+    {
+        var pickupController = GetComponent<PickupController>();
+        Assert.IsNotNull(pickupController);
+
+        // First try to drop existing ingredient
+        if (pickupController.TryDropCurrentIngredient())
+            return;
+
+        // Add other fallback handling here
+    }
+
+    // HELPERS
+    private class InteractContext : IInteractContext
+    {
+        public GameObject InteractInstigator { get; private set; }
+
+        public InteractContext(GameObject instigator)
+        {
+            InteractInstigator = instigator;
         }
     }
 }
