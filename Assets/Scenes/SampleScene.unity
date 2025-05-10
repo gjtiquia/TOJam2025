@@ -1072,7 +1072,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6e841abe4077944e82f2a7d4ff3bd91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _settingsSO: {fileID: 0}
+  _settingsSO: {fileID: 11400000, guid: 1941337c5cc1bfe458d8d7e7c00c26a2, type: 2}
   _pickupAnchor: {fileID: 903396695}
 --- !u!1 &763399104
 GameObject:
