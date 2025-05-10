@@ -3,7 +3,7 @@ using UnityEngine.Assertions;
 
 public interface IInteractable
 {
-    public bool IsInteractable();
+    public bool IsInteractable(IInteractContext context);
     public void SetIsHoveredState(bool isHovered);
     public void Interact(IInteractContext context);
 }
@@ -38,7 +38,7 @@ public class InteractController : MonoBehaviour
     {
         Assert.IsNotNull(_interactTriggerCollider);
 
-        if (_nearestInteractable != null && !_nearestInteractable.IsInteractable())
+        if (_nearestInteractable != null && !_nearestInteractable.IsInteractable(_interactContext))
         {
             _nearestInteractable.SetIsHoveredState(false);
             _nearestInteractable = null;
@@ -62,7 +62,7 @@ public class InteractController : MonoBehaviour
             var collider = _hitColliders[i];
 
             var interactable = collider.GetComponentInParent<IInteractable>();
-            if (!interactable.IsInteractable()) continue;
+            if (!interactable.IsInteractable(_interactContext)) continue;
 
             var distanceVector = collider.transform.position - _interactTriggerCollider.transform.position;
             var sqrDistance = distanceVector.sqrMagnitude;
@@ -101,7 +101,7 @@ public class InteractController : MonoBehaviour
         {
             _wasInteractPressed = true;
 
-            if (_nearestInteractable != null && _nearestInteractable.IsInteractable())
+            if (_nearestInteractable != null && _nearestInteractable.IsInteractable(_interactContext))
             {
                 _nearestInteractable.Interact(_interactContext);
             }

@@ -40,7 +40,7 @@ public class IngredientController : MonoBehaviour, IInteractable
         SetIsHoveredState(false);
     }
 
-    public bool IsInteractable()
+    public bool IsInteractable(IInteractContext context)
     {
         return _state == EState.Idle;
     }
