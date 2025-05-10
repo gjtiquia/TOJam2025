@@ -1,14 +1,19 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
 public enum EFlavour
 {
-    // TODO
+    Sweet = 0,
+    Spicy = 1,
+    Salty = 2,
+    Sour = 3,
+    Creamy = 4,
 }
 
 public interface IIngredientData
 {
-    // TODO : list of flavours
+    public List<EFlavour> Flavours { get; }
 }
 
 public class IngredientController : MonoBehaviour, IInteractable, IPickupItem
@@ -90,7 +95,7 @@ public class IngredientController : MonoBehaviour, IInteractable, IPickupItem
 
     public IIngredientData Consume()
     {
-        var ingredientData = IngredientData.Create();
+        var ingredientData = IngredientData.Create(_settingsSO.Flavours);
 
         // TODO : object pool maybe
         Destroy(this.gameObject);
@@ -101,11 +106,18 @@ public class IngredientController : MonoBehaviour, IInteractable, IPickupItem
     // HELPER CLASSES
     private struct IngredientData : IIngredientData
     {
-        public static IngredientData Create()
+        public List<EFlavour> Flavours { get; private set; }
+
+        public static IngredientData Create(List<EFlavour> flavours)
         {
+            // Clone in-case the original reference is modified or destroyed
+            var flavourListClone = new List<EFlavour>();
+            foreach (var flavour in flavours)
+                flavourListClone.Add(flavour);
+
             return new()
             {
-
+                Flavours = flavourListClone,
             };
         }
     }
