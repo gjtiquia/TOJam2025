@@ -1,0 +1,94 @@
+using UnityEngine;
+using UnityEngine.Assertions;
+
+public interface IInteractable
+{
+    public bool IsInteractable();
+    public void SetIsHoveredState(bool isHovered);
+    public void Interact();
+}
+
+public class InteractController : MonoBehaviour
+{
+    [Header("Settings")]
+    [SerializeField] private LayerMask _layermask;
+
+    [Header("References")]
+    [SerializeField] private SphereCollider _interactTriggerCollider;
+
+    const int MAX_COLLIDERS = 10;
+    private Collider[] _hitColliders = new Collider[MAX_COLLIDERS];
+    private IInteractable _nearestInteractable = null;
+
+    private bool _wasInteractPressed = false; // Prevent interact from calling for each tick interact is pressed
+
+    public void UpdateNearestInteractableOnFixedUpdate()
+    {
+        Assert.IsNotNull(_interactTriggerCollider);
+
+        if (_nearestInteractable != null && !_nearestInteractable.IsInteractable())
+        {
+            _nearestInteractable.SetIsHoveredState(false);
+            _nearestInteractable = null;
+        }
+
+        var hitCount = Physics.OverlapSphereNonAlloc(_interactTriggerCollider.transform.position, _interactTriggerCollider.radius, _hitColliders, _layermask);
+        if (hitCount == 0)
+        {
+            if (_nearestInteractable != null)
+            {
+                _nearestInteractable.SetIsHoveredState(false);
+                _nearestInteractable = null;
+            }
+            return;
+        }
+
+        float nearestSqrDistance = float.MaxValue;
+        IInteractable newNearestInteractable = null;
+        for (int i = 0; i < hitCount; i++)
+        {
+            var collider = _hitColliders[i];
+
+            var interactable = collider.GetComponentInParent<IInteractable>();
+            if (!interactable.IsInteractable()) continue;
+
+            var distanceVector = collider.transform.position - _interactTriggerCollider.transform.position;
+            var sqrDistance = distanceVector.sqrMagnitude;
+
+            if (sqrDistance < nearestSqrDistance)
+            {
+                nearestSqrDistance = sqrDistance;
+                newNearestInteractable = interactable;
+            }
+        }
+
+        // Note : careful, newNearestInteractable may be null (eg. it is not interactable)
+
+        if (_nearestInteractable != null && _nearestInteractable == newNearestInteractable)
+        {
+            // Do nothing, because the nearest interactable is the same
+        }
+        else
+        {
+            if (_nearestInteractable != null)
+                _nearestInteractable.SetIsHoveredState(false);
+
+            if (newNearestInteractable != null)
+                newNearestInteractable.SetIsHoveredState(true);
+        }
+
+        _nearestInteractable = newNearestInteractable;
+    }
+
+    public void ConsumeInputOnFixedUpdate(InputStruct input)
+    {
+        if (_wasInteractPressed && !input.IsInteractPressed)
+            _wasInteractPressed = false;
+
+        if (!_wasInteractPressed && input.IsInteractPressed && _nearestInteractable != null && _nearestInteractable.IsInteractable())
+        {
+            _wasInteractPressed = true;
+            _nearestInteractable.Interact();
+        }
+    }
+}
