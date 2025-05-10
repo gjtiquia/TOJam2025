@@ -1,9 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
 public class PotController : MonoBehaviour, IInteractable
 {
     [SerializeField] private GameObject _hoverVisual;
+
+    private List<IIngredientData> _soupIngredients = new();
 
     private void Awake()
     {
@@ -18,13 +21,28 @@ public class PotController : MonoBehaviour, IInteractable
 
     public bool IsInteractable(IInteractContext context)
     {
-        // always interactable for now i guess...?
-        // probably need to check context, if has ingredient picked up or if full (stretch goal)
-        return true;
+        if (context.InteractInstigator.GetComponent<PickupController>() is PickupController pickupController)
+        {
+            if (pickupController.IsHoldingAnIngredient())
+                return true;
+        }
+
+        // TODO : take out soup handling
+
+        // false by default
+        return false;
     }
 
     public void Interact(IInteractContext context)
     {
-        // TODO
+        if (context.InteractInstigator.GetComponent<PickupController>() is PickupController pickupController)
+        {
+            if (pickupController.TryDropCurrentIngredient(out var ingredientInstance))
+            {
+                var ingredientData = ingredientInstance.Consume();
+                _soupIngredients.Add(ingredientData);
+                return;
+            }
+        }
     }
 }

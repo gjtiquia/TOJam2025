@@ -7,6 +7,11 @@ public class PickupController : MonoBehaviour
 
     private IngredientController _currentIngredient = null;
 
+    public bool IsHoldingAnIngredient()
+    {
+        return _currentIngredient != null;
+    }
+
     public void PickupIngredient(IngredientController ingredient)
     {
         if (TryDropCurrentIngredient(out var droppedIngredient))

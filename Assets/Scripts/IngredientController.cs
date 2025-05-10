@@ -1,6 +1,16 @@
 using UnityEngine;
 using UnityEngine.Assertions;
 
+public enum EFlavour
+{
+    // TODO
+}
+
+public interface IIngredientData
+{
+    // TODO : list of flavours
+}
+
 public class IngredientController : MonoBehaviour, IInteractable
 {
     public enum EState
@@ -53,8 +63,6 @@ public class IngredientController : MonoBehaviour, IInteractable
 
     public void Interact(IInteractContext context)
     {
-        Debug.Log("Ingredient: Interact");
-
         if (context.InteractInstigator.GetComponent<PickupController>() is not PickupController pickupController)
             return;
 
@@ -78,5 +86,27 @@ public class IngredientController : MonoBehaviour, IInteractable
     public void Throw(Vector3 normalizedDirection)
     {
         _rigidbody.AddForce(normalizedDirection * _settingsSO.ThrowForce, ForceMode.Impulse);
+    }
+
+    public IIngredientData Consume()
+    {
+        var ingredientData = IngredientData.Create();
+
+        // TODO : object pool maybe
+        Destroy(this.gameObject);
+
+        return ingredientData;
+    }
+
+    // HELPER CLASSES
+    private struct IngredientData : IIngredientData
+    {
+        public static IngredientData Create()
+        {
+            return new()
+            {
+
+            };
+        }
     }
 }
