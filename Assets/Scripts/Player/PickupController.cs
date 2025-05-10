@@ -1,20 +1,33 @@
 using UnityEngine;
 using UnityEngine.Assertions;
 
+public interface IPickupItem
+{
+    public Transform transform { get; }
+    public void OnPickup();
+    public void OnDrop();
+    public void Throw(Vector3 direction);
+}
+
 public class PickupController : MonoBehaviour
 {
     [SerializeField] private Transform _pickupAnchor;
 
-    private IngredientController _currentIngredient = null;
+    private IPickupItem _currentPickupItem = null;
 
-    public bool IsHoldingAnIngredient()
+    public bool IsHoldingAnItem()
     {
-        return _currentIngredient != null;
+        return _currentPickupItem != null;
     }
 
-    public void PickupIngredient(IngredientController ingredient)
+    public IPickupItem GetCurrentPickupItem()
     {
-        if (TryDropCurrentIngredient(out var droppedIngredient))
+        return _currentPickupItem;
+    }
+
+    public void PickupItem(IPickupItem item)
+    {
+        if (TryDropCurrentItem(out var droppedIngredient))
         {
             // var direction = Random.onUnitSphere; // a bit too chaotic
             var direction = (_pickupAnchor.position - transform.position).normalized;
@@ -23,28 +36,28 @@ public class PickupController : MonoBehaviour
 
         Assert.IsNotNull(_pickupAnchor);
 
-        ingredient.transform.SetParent(_pickupAnchor);
-        ingredient.transform.localPosition = Vector3.zero;
+        item.transform.SetParent(_pickupAnchor);
+        item.transform.localPosition = Vector3.zero;
         // ingredient.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity); // Not setting the rotation seems more fun and chaotic😂
 
-        ingredient.OnPickup();
+        item.OnPickup();
 
-        _currentIngredient = ingredient;
+        _currentPickupItem = item;
     }
 
-    public bool TryDropCurrentIngredient(out IngredientController droppedIngredient)
+    public bool TryDropCurrentItem(out IPickupItem droppedItem)
     {
-        if (_currentIngredient == null)
+        if (_currentPickupItem == null)
         {
-            droppedIngredient = null;
+            droppedItem = null;
             return false;
         }
 
-        droppedIngredient = _currentIngredient;
+        droppedItem = _currentPickupItem;
 
-        _currentIngredient.transform.SetParent(null);
-        _currentIngredient.OnDrop();
-        _currentIngredient = null;
+        _currentPickupItem.transform.SetParent(null);
+        _currentPickupItem.OnDrop();
+        _currentPickupItem = null;
 
         return true;
     }

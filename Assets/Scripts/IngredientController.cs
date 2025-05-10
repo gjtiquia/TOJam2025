@@ -11,7 +11,7 @@ public interface IIngredientData
     // TODO : list of flavours
 }
 
-public class IngredientController : MonoBehaviour, IInteractable
+public class IngredientController : MonoBehaviour, IInteractable, IPickupItem
 {
     public enum EState
     {
@@ -66,7 +66,7 @@ public class IngredientController : MonoBehaviour, IInteractable
         if (context.InteractInstigator.GetComponent<PickupController>() is not PickupController pickupController)
             return;
 
-        pickupController.PickupIngredient(this);
+        pickupController.PickupItem(this);
     }
 
     public void OnPickup()
