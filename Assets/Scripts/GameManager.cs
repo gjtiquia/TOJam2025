@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
         _isSpawningOrders = true;
         while (_isSpawningOrders)
         {
-            CustomerOrderListController.Instance.RandomlyAddOrder();
+            CustomerOrderListController.Instance.TryRandomlyAddOrder();
             await UniTask.Delay(TimeSpan.FromSeconds(_settingsSO.CustomerOrderSpawnInterval));
         }
     }

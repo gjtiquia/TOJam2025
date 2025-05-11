@@ -13,7 +13,7 @@ public class DeveloperTools : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Y))
         {
             Debug.Log("DeveloperTools: RandomlyAddOrder");
-            CustomerOrderListController.Instance.RandomlyAddOrder();
+            CustomerOrderListController.Instance.TryRandomlyAddOrder();
         }
     }
 }
