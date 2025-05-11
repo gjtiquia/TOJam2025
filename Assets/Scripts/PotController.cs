@@ -103,12 +103,27 @@ public class PotController : MonoBehaviour, IInteractable
         var soupInstance = Instantiate(_soupPrefab);
         var soup = soupInstance.GetComponent<SoupController>();
 
-        // TODO : init soup
+        var flavours = GetFlavours();
+        soup.SetFlavours(flavours);
 
         pickupController.PickupItem(soup); // this will automatically throw any held item (if any)
 
         // Cleanup
         _soupIngredients.Clear();
         _potSoupVisual.SetActive(false);
+    }
+
+    private List<EFlavour> GetFlavours()
+    {
+        var flavours = new List<EFlavour>();
+        foreach (var ingredient in _soupIngredients)
+        {
+            foreach (var flavour in ingredient.Flavours)
+            {
+                if (!flavours.Contains(flavour))
+                    flavours.Add(flavour);
+            }
+        }
+        return flavours;
     }
 }

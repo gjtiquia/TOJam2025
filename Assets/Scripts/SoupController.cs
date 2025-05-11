@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -15,6 +16,8 @@ public class SoupController : MonoBehaviour, IPickupItem, IInteractable
     private Collider _collider;
 
     private EState _state = EState.Idle;
+
+    private List<EFlavour> _flavours = new();
 
     private void Awake()
     {
@@ -63,5 +66,15 @@ public class SoupController : MonoBehaviour, IPickupItem, IInteractable
     public void Throw(Vector3 normalizedDirection)
     {
         _rigidbody.AddForce(normalizedDirection * PickupSettingsSO.Instance.ThrowForce, ForceMode.Impulse);
+    }
+
+    public void SetFlavours(List<EFlavour> flavours)
+    {
+        Debug.Log($"Soup.SetFlavours: flavour count: {flavours.Count}");
+
+        // Clone to prevent issues with references
+        _flavours.Clear();
+        foreach (var flavour in flavours)
+            _flavours.Add(flavour);
     }
 }
