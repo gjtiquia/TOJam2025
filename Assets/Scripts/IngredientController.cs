@@ -9,6 +9,8 @@ public enum EFlavour
     Salty = 2,
     Sour = 3,
     Creamy = 4,
+
+    COUNT,
 }
 
 public interface IIngredientData
