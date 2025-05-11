@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b08ea337ff6f7c4a9f3bc52edbd17cd, type: 3}
   m_Name: GameSettingsSO
   m_EditorClassIdentifier: 
-  IngredientSpawnInterval: 2
-  CustomerOrderSpawnInterval: 10
+  GameDuration: 120
+  IngredientSpawnInterval: 1
+  CustomerOrderSpawnInterval: 6

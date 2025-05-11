@@ -5,22 +5,50 @@ using System;
 
 public class GameManager : MonoBehaviour
 {
+    public static event Action OnSecondsLeftChanged;
+    public static GameManager Instance;
+
+    public int SecondsLeft => _secondsLeft;
+
     [SerializeField] private GameSettingsSO _settingsSO;
 
     private bool _isSpawningIngredients;
     private bool _isSpawningOrders;
 
+    private int _secondsLeft { get => m_secondsLeft; set { m_secondsLeft = value; OnSecondsLeftChanged?.Invoke(); } }
+    private int m_secondsLeft;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     private void Start()
     {
         // leaving the flexibility to start game after title screen
-        StartGame();
+        StartGameAsync().Forget();
     }
 
-    public void StartGame()
+    public async UniTask StartGameAsync()
     {
+        // TODO : attempt cleanup
+
         Assert.IsNotNull(_settingsSO);
         SpawnIngredientsLoopAsync().Forget();
         SpawnCustomerOrdersLoopAsync().Forget();
+
+        _secondsLeft = _settingsSO.GameDuration;
+        while (_secondsLeft > 0)
+        {
+            await UniTask.Delay(TimeSpan.FromSeconds(1));
+            _secondsLeft--;
+        }
+
+        // Stop game
+        _isSpawningIngredients = false;
+        _isSpawningOrders = false;
+
+        // TODO : end screen
     }
 
     private async UniTask SpawnIngredientsLoopAsync()

@@ -4,6 +4,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "GameSettingsSO", menuName = "ScriptableObjects/GameSettingsSO")]
 public class GameSettingsSO : ScriptableObject
 {
-    public float IngredientSpawnInterval;
-    public float CustomerOrderSpawnInterval;
+    [Header("Settings")]
+    [Min(1)] public int GameDuration;
+
+    [Header("Spawn Intervals")]
+    [Min(0)] public float IngredientSpawnInterval;
+    [Min(0)] public float CustomerOrderSpawnInterval;
 }
