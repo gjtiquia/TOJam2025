@@ -18,7 +18,7 @@ public interface IIngredientData
     public List<EFlavour> Flavours { get; }
 }
 
-public class IngredientController : MonoBehaviour, IInteractable, IPickupItem
+public class IngredientController : MonoBehaviour, IInteractable, IPickupItem, IFlavourUIParent
 {
     public enum EState
     {
@@ -27,13 +27,12 @@ public class IngredientController : MonoBehaviour, IInteractable, IPickupItem
     }
 
     public List<EFlavour> Flavours => _settingsSO.Flavours;
-    public bool IsHovered => _hoverVisual.activeSelf;
 
     [Header("Settings")]
     [SerializeField] private IngredientSettingsSO _settingsSO;
 
     [Header("Prefabs")]
-    [SerializeField] private IngredientUIController _ingredientUIPrefab;
+    [SerializeField] private FlavourUIController _flavourUIPrefab;
 
     [Header("References")]
     [SerializeField] private MeshRenderer _meshRenderer;
@@ -46,7 +45,7 @@ public class IngredientController : MonoBehaviour, IInteractable, IPickupItem
 
     private EState _state = EState.Idle;
 
-    private IngredientUIController _uiInstance;
+    private FlavourUIController _uiInstance;
 
     private void Awake()
     {
@@ -67,8 +66,8 @@ public class IngredientController : MonoBehaviour, IInteractable, IPickupItem
 
     private void Start()
     {
-        Assert.IsNotNull(_ingredientUIPrefab);
-        _uiInstance = Instantiate(_ingredientUIPrefab);
+        Assert.IsNotNull(_flavourUIPrefab);
+        _uiInstance = Instantiate(_flavourUIPrefab);
         _uiInstance.Init(this);
     }
 
@@ -118,6 +117,11 @@ public class IngredientController : MonoBehaviour, IInteractable, IPickupItem
         Destroy(this.gameObject);
 
         return ingredientData;
+    }
+
+    public bool CanShowFlavourUI()
+    {
+        return _hoverVisual.activeSelf;
     }
 
     // HELPER CLASSES

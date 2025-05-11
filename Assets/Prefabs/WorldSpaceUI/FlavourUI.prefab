@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 2476975051849483068}
   - component: {fileID: -3382642326331682560}
   m_Layer: 0
-  m_Name: IngredientUI
+  m_Name: FlavourUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

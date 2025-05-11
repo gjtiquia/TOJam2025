@@ -2,14 +2,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-public class PotController : MonoBehaviour, IInteractable
+public class PotController : MonoBehaviour, IInteractable, IFlavourUIParent
 {
+    public List<EFlavour> Flavours => GetFlavours();
+
     [Header("Prefabs")]
     [SerializeField] private GameObject _soupPrefab;
 
     [Header("References")]
     [SerializeField] private GameObject _hoverVisual;
     [SerializeField] private GameObject _potSoupVisual;
+    [SerializeField] private FlavourUIController _flavourUI;
 
     private List<IIngredientData> _soupIngredients = new();
 
@@ -18,9 +21,11 @@ public class PotController : MonoBehaviour, IInteractable
         Assert.IsNotNull(_hoverVisual);
         Assert.IsNotNull(_soupPrefab);
         Assert.IsNotNull(_potSoupVisual);
+        Assert.IsNotNull(_flavourUI);
 
         SetIsHoveredState(false);
         _potSoupVisual.SetActive(false);
+        _flavourUI.Init(this);
     }
 
     public void SetIsHoveredState(bool isHovered)
@@ -83,6 +88,7 @@ public class PotController : MonoBehaviour, IInteractable
             var ingredientData = ((IngredientController)droppedItem).Consume();
             _soupIngredients.Add(ingredientData);
             _potSoupVisual.SetActive(true);
+            _flavourUI.UpdateFlavours();
 
             Debug.Log($"Pot.DropIngredient: total ingredients: {_soupIngredients.Count}");
         }
@@ -125,5 +131,10 @@ public class PotController : MonoBehaviour, IInteractable
             }
         }
         return flavours;
+    }
+
+    public bool CanShowFlavourUI()
+    {
+        return _hoverVisual.activeSelf;
     }
 }

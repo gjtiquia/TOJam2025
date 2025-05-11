@@ -167,6 +167,7 @@ MonoBehaviour:
   _soupPrefab: {fileID: 3684617643860710002, guid: ff661a834b8bf864aad71b7ca3828ad8, type: 3}
   _hoverVisual: {fileID: 2126337804995404603}
   _potSoupVisual: {fileID: 8805471005289085374}
+  _flavourUI: {fileID: 7615126674669189291}
 --- !u!1 &7213482857625307089
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,6 +250,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1945509183293024919}
   - {fileID: 8344441294374119928}
   - {fileID: 1009502416884070314}
   - {fileID: 8176427601732150020}
@@ -371,6 +373,83 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8b542a5061ddc604bad6d4f0b73f9efa, type: 3}
   m_PrefabInstance: {fileID: 687010478919553089}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4080311722954369451
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7087051087485058449}
+    m_Modifications:
+    - target: {fileID: 134976410213188789, guid: 3a5ae3684198abe4c940b0bc1666e7df, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 310
+      objectReference: {fileID: 0}
+    - target: {fileID: 2476975051849483068, guid: 3a5ae3684198abe4c940b0bc1666e7df, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2476975051849483068, guid: 3a5ae3684198abe4c940b0bc1666e7df, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 2476975051849483068, guid: 3a5ae3684198abe4c940b0bc1666e7df, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2476975051849483068, guid: 3a5ae3684198abe4c940b0bc1666e7df, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2476975051849483068, guid: 3a5ae3684198abe4c940b0bc1666e7df, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2476975051849483068, guid: 3a5ae3684198abe4c940b0bc1666e7df, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2476975051849483068, guid: 3a5ae3684198abe4c940b0bc1666e7df, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2476975051849483068, guid: 3a5ae3684198abe4c940b0bc1666e7df, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2476975051849483068, guid: 3a5ae3684198abe4c940b0bc1666e7df, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2476975051849483068, guid: 3a5ae3684198abe4c940b0bc1666e7df, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2772512230178088817, guid: 3a5ae3684198abe4c940b0bc1666e7df, type: 3}
+      propertyPath: m_Name
+      value: FlavourUI
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3a5ae3684198abe4c940b0bc1666e7df, type: 3}
+--- !u!4 &1945509183293024919 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2476975051849483068, guid: 3a5ae3684198abe4c940b0bc1666e7df, type: 3}
+  m_PrefabInstance: {fileID: 4080311722954369451}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7615126674669189291 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -3382642326331682560, guid: 3a5ae3684198abe4c940b0bc1666e7df, type: 3}
+  m_PrefabInstance: {fileID: 4080311722954369451}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96c0c2311c880d04e888b82edb5c8fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8570975610766935279
 PrefabInstance:
   m_ObjectHideFlags: 0

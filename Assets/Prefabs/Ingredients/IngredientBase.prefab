@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _settingsSO: {fileID: 11400000, guid: a46f5e1b2d3caad48aabd566e8366b9b, type: 2}
-  _ingredientUIPrefab: {fileID: -3382642326331682560, guid: 3a5ae3684198abe4c940b0bc1666e7df, type: 3}
+  _flavourUIPrefab: {fileID: -3382642326331682560, guid: 3a5ae3684198abe4c940b0bc1666e7df, type: 3}
   _meshRenderer: {fileID: 4694817257805902979}
   _idleMaterial: {fileID: 2100000, guid: 9c4dfa68bc3ff9f459b29bc0a4500c2a, type: 2}
   _hoverMaterial: {fileID: 2100000, guid: 0c2ca11c0d0d29246a684c9d1a9b6478, type: 2}
