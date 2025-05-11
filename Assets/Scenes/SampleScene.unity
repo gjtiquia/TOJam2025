@@ -700,14 +700,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1945509183293024919, guid: c0c9559a69c96c84f859aca29d44973a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4468542798992942084, guid: c0c9559a69c96c84f859aca29d44973a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.5
-      objectReference: {fileID: 0}
     - target: {fileID: 6973659180752228618, guid: c0c9559a69c96c84f859aca29d44973a, type: 3}
       propertyPath: m_Name
       value: Pot
