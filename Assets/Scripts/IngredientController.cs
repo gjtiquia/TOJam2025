@@ -26,8 +26,14 @@ public class IngredientController : MonoBehaviour, IInteractable, IPickupItem
         PickedUp,
     }
 
+    public List<EFlavour> Flavours => _settingsSO.Flavours;
+    public bool IsHovered => _hoverVisual.activeSelf;
+
     [Header("Settings")]
     [SerializeField] private IngredientSettingsSO _settingsSO;
+
+    [Header("Prefabs")]
+    [SerializeField] private IngredientUIController _ingredientUIPrefab;
 
     [Header("References")]
     [SerializeField] private MeshRenderer _meshRenderer;
@@ -39,6 +45,8 @@ public class IngredientController : MonoBehaviour, IInteractable, IPickupItem
     private Collider _collider;
 
     private EState _state = EState.Idle;
+
+    private IngredientUIController _uiInstance;
 
     private void Awake()
     {
@@ -55,6 +63,13 @@ public class IngredientController : MonoBehaviour, IInteractable, IPickupItem
         Assert.IsNotNull(_hoverVisual);
 
         SetIsHoveredState(false);
+    }
+
+    private void Start()
+    {
+        Assert.IsNotNull(_ingredientUIPrefab);
+        _uiInstance = Instantiate(_ingredientUIPrefab);
+        _uiInstance.Init(this);
     }
 
     public bool IsInteractable(IInteractContext context)
