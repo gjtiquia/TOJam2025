@@ -30,12 +30,12 @@ public class CustomerOrderController : MonoBehaviour
             Instantiate(uiPrefab.UI, _flavourUIParent);
         }
     }
+}
 
-    // HELPERS
-    [System.Serializable]
-    private class FlavourUI
-    {
-        public EFlavour Flavour;
-        public GameObject UI;
-    }
+// HELPERS
+[System.Serializable]
+public class FlavourUI
+{
+    public EFlavour Flavour;
+    public GameObject UI;
 }

@@ -1,9 +1,15 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class IngredientUIController : MonoBehaviour
 {
+    [Header("Prefabs")]
+    [SerializeField] private List<FlavourUI> _flavourUIPrefabs;
+
     [Header("References")]
     [SerializeField] private GameObject _canvas;
+    [SerializeField] private Transform _flavourUIParent;
 
     private IngredientController _ingredient = null;
 
@@ -12,7 +18,12 @@ public class IngredientUIController : MonoBehaviour
         _ingredient = ingredient;
         foreach (var flavour in ingredient.Flavours)
         {
-            // TODO
+            var uiPrefab = _flavourUIPrefabs.Find(x => x.Flavour == flavour);
+
+            Assert.IsNotNull(uiPrefab);
+            Assert.IsNotNull(_flavourUIParent);
+
+            Instantiate(uiPrefab.UI, _flavourUIParent);
         }
     }
 
