@@ -17,6 +17,7 @@ public class CustomerOrderListController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        Reset();
     }
 
     public bool TryRandomlyAddOrder()
@@ -66,5 +67,12 @@ public class CustomerOrderListController : MonoBehaviour
         // TODO : score
 
         return true;
+    }
+
+    public void Reset()
+    {
+        _fulfilledOrders = 0;
+        foreach (var order in GetComponentsInChildren<CustomerOrderController>())
+            Destroy(order.gameObject);
     }
 }

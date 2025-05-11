@@ -38,6 +38,10 @@ public class InteractController : MonoBehaviour
     {
         Assert.IsNotNull(_interactTriggerCollider);
 
+        // Hack cuz some interactables even if destroyed still returns true during null check
+        if (_nearestInteractable != null && (Component)_nearestInteractable == null)
+            _nearestInteractable = null;
+
         if (_nearestInteractable != null && !_nearestInteractable.IsInteractable(_interactContext))
         {
             _nearestInteractable.SetIsHoveredState(false);

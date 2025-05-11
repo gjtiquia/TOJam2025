@@ -114,6 +114,7 @@ public class IngredientController : MonoBehaviour, IInteractable, IPickupItem, I
         var ingredientData = IngredientData.Create(_settingsSO.Flavours);
 
         // TODO : object pool maybe
+        Destroy(_uiInstance.gameObject);
         Destroy(this.gameObject);
 
         return ingredientData;

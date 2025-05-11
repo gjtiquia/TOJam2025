@@ -118,6 +118,7 @@ public class SoupController : MonoBehaviour, IPickupItem, IInteractable, IFlavou
         var soupData = SoupData.Create(_flavours);
 
         // TODO : object pool maybe
+        Destroy(_uiInstance.gameObject);
         Destroy(this.gameObject);
 
         return soupData;

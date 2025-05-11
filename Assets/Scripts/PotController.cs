@@ -24,8 +24,9 @@ public class PotController : MonoBehaviour, IInteractable, IFlavourUIParent
         Assert.IsNotNull(_flavourUI);
 
         SetIsHoveredState(false);
-        _potSoupVisual.SetActive(false);
         _flavourUI.Init(this);
+
+        ResetPot();
     }
 
     public void SetIsHoveredState(bool isHovered)
@@ -114,7 +115,11 @@ public class PotController : MonoBehaviour, IInteractable, IFlavourUIParent
 
         pickupController.PickupItem(soup); // this will automatically throw any held item (if any)
 
-        // Cleanup
+        ResetPot();
+    }
+
+    public void ResetPot()
+    {
         _soupIngredients.Clear();
         _potSoupVisual.SetActive(false);
         _flavourUI.UpdateFlavours();
