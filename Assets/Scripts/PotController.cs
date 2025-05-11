@@ -117,6 +117,7 @@ public class PotController : MonoBehaviour, IInteractable, IFlavourUIParent
         // Cleanup
         _soupIngredients.Clear();
         _potSoupVisual.SetActive(false);
+        _flavourUI.UpdateFlavours();
     }
 
     private List<EFlavour> GetFlavours()

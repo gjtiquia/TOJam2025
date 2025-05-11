@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 4372222621813242860}
   - component: {fileID: 4032527202806509238}
   m_Layer: 5
-  m_Name: FlavourUIBase
+  m_Name: FlavourUIComponentBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

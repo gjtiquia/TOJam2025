@@ -7,7 +7,7 @@ public interface ISoupData
     public List<EFlavour> Flavours { get; }
 }
 
-public class SoupController : MonoBehaviour, IPickupItem, IInteractable
+public class SoupController : MonoBehaviour, IPickupItem, IInteractable, IFlavourUIParent
 {
     public enum EState
     {
@@ -15,6 +15,12 @@ public class SoupController : MonoBehaviour, IPickupItem, IInteractable
         PickedUp,
     }
 
+    public List<EFlavour> Flavours => _flavours;
+
+    [Header("Prefabs")]
+    [SerializeField] private FlavourUIController _flavourUIPrefab;
+
+    [Header("References")]
     [SerializeField] private GameObject _hoverVisual;
 
     private Rigidbody _rigidbody;
@@ -23,6 +29,8 @@ public class SoupController : MonoBehaviour, IPickupItem, IInteractable
     private EState _state = EState.Idle;
 
     private List<EFlavour> _flavours = new();
+
+    private FlavourUIController _uiInstance;
 
     private void Awake()
     {
@@ -34,6 +42,25 @@ public class SoupController : MonoBehaviour, IPickupItem, IInteractable
         Assert.IsNotNull(_hoverVisual);
 
         SetIsHoveredState(false);
+    }
+
+    private void Start()
+    {
+        LazySpawnOrUpdateUI();
+    }
+
+    private void LazySpawnOrUpdateUI()
+    {
+        if (_uiInstance == null)
+        {
+            Assert.IsNotNull(_flavourUIPrefab);
+            _uiInstance = Instantiate(_flavourUIPrefab);
+            _uiInstance.Init(this);
+        }
+        else
+        {
+            _uiInstance.UpdateFlavours();
+        }
     }
 
     public bool IsInteractable(IInteractContext context)
@@ -81,6 +108,9 @@ public class SoupController : MonoBehaviour, IPickupItem, IInteractable
         _flavours.Clear();
         foreach (var flavour in flavours)
             _flavours.Add(flavour);
+
+        // cuz apparently Start is not called yet
+        LazySpawnOrUpdateUI();
     }
 
     public ISoupData Consume()
@@ -91,6 +121,11 @@ public class SoupController : MonoBehaviour, IPickupItem, IInteractable
         Destroy(this.gameObject);
 
         return soupData;
+    }
+
+    public bool CanShowFlavourUI()
+    {
+        return _hoverVisual.activeSelf;
     }
 
     // HELPER CLASSES
