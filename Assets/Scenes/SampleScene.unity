@@ -899,6 +899,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eec5baa70b4c74e5989a67c51dc03b0b, type: 3}
+--- !u!1 &1104049033 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1390343164687480339, guid: ec3641c25a1bbfa4791a60be98d9f168, type: 3}
+  m_PrefabInstance: {fileID: 3223246569838079895}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1247713287
 GameObject:
   m_ObjectHideFlags: 0
@@ -1718,6 +1723,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3169333621737047257, guid: ec3641c25a1bbfa4791a60be98d9f168, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3169333621737047257, guid: ec3641c25a1bbfa4791a60be98d9f168, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3169333621737047257, guid: ec3641c25a1bbfa4791a60be98d9f168, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3169333621737047257, guid: ec3641c25a1bbfa4791a60be98d9f168, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3169333621737047257, guid: ec3641c25a1bbfa4791a60be98d9f168, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3408056066027299348, guid: ec3641c25a1bbfa4791a60be98d9f168, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -1848,6 +1873,10 @@ PrefabInstance:
       propertyPath: _gameEndScreen
       value: 
       objectReference: {fileID: 411811693}
+    - target: {fileID: -82150810137787807, guid: ecfac95e1a463514c86bc21dee8dc65d, type: 3}
+      propertyPath: _gameStartScreen
+      value: 
+      objectReference: {fileID: 1104049033}
     - target: {fileID: 1711936168805076378, guid: ecfac95e1a463514c86bc21dee8dc65d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

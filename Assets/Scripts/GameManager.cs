@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameSettingsSO _settingsSO;
 
     [Header("References")]
+    [SerializeField] private GameObject _gameStartScreen;
     [SerializeField] private GameObject _gameEndScreen;
 
     private int _secondsLeft { get => m_secondsLeft; set { m_secondsLeft = value; OnSecondsLeftChanged?.Invoke(); } }
@@ -26,8 +27,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        // leaving the flexibility to start game after title screen
-        StartGameAsync().Forget();
+        Assert.IsNotNull(_gameStartScreen);
+        _gameStartScreen.SetActive(true);
     }
 
     public async UniTask StartGameAsync()
