@@ -38,7 +38,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 992885015109808363, guid: 41243077e72152e44a10dbe4aad4b51d, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 992885015109808363, guid: 41243077e72152e44a10dbe4aad4b51d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -88,6 +88,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1083575423018840514, guid: 41243077e72152e44a10dbe4aad4b51d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c1d6e0b2ff2e2024c84e7e6e226a8634, type: 3}
+    - target: {fileID: 1083575423018840514, guid: 41243077e72152e44a10dbe4aad4b51d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1277539231131549165, guid: 41243077e72152e44a10dbe4aad4b51d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 321
+      objectReference: {fileID: 0}
+    - target: {fileID: 1277539231131549165, guid: 41243077e72152e44a10dbe4aad4b51d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 446
+      objectReference: {fileID: 0}
+    - target: {fileID: 1277539231131549165, guid: 41243077e72152e44a10dbe4aad4b51d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1277539231131549165, guid: 41243077e72152e44a10dbe4aad4b51d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1277539231131549165, guid: 41243077e72152e44a10dbe4aad4b51d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1277539231131549165, guid: 41243077e72152e44a10dbe4aad4b51d, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2029650016893789510, guid: 41243077e72152e44a10dbe4aad4b51d, type: 3}
       propertyPath: m_Name
       value: Salty_CustomerOrderFlavour
@@ -102,6 +134,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8026003772421046335, guid: 41243077e72152e44a10dbe4aad4b51d, type: 3}
       propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026003772421046335, guid: 41243077e72152e44a10dbe4aad4b51d, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
