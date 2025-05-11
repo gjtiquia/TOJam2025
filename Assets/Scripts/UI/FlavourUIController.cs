@@ -25,6 +25,7 @@ public class FlavourUIController : MonoBehaviour
     public void Init(IFlavourUIParent parent)
     {
         _parent = parent;
+        transform.position = parent.transform.position;
         UpdateFlavours();
     }
 
