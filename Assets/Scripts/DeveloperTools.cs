@@ -9,5 +9,11 @@ public class DeveloperTools : MonoBehaviour
             Debug.Log("DeveloperTools: RandomlySpawnIngredient");
             IngredientSpawner.Instance.RandomlySpawnIngredient();
         }
+
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            Debug.Log("DeveloperTools: RandomlyAddOrder");
+            CustomerOrderListController.Instance.RandomlyAddOrder();
+        }
     }
 }

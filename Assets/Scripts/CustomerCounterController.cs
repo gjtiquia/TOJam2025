@@ -36,8 +36,6 @@ public class CustomerCounterController : MonoBehaviour, IInteractable
         Assert.IsNotNull(soup);
 
         var soupData = soup.Consume();
-
-        // TODO : check what order is fulfilled
+        CustomerOrderListController.Instance.FulfillOrder(soupData);
     }
-
 }
