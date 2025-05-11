@@ -62,7 +62,7 @@ public class InteractController : MonoBehaviour
             var collider = _hitColliders[i];
 
             var interactable = collider.GetComponentInParent<IInteractable>();
-            if (!interactable.IsInteractable(_interactContext)) continue;
+            if (interactable == null || !interactable.IsInteractable(_interactContext)) continue;
 
             var distanceVector = collider.transform.position - _interactTriggerCollider.transform.position;
             var sqrDistance = distanceVector.sqrMagnitude;

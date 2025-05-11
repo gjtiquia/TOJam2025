@@ -2,6 +2,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
+public interface ISoupData
+{
+    public List<EFlavour> Flavours { get; }
+}
+
 public class SoupController : MonoBehaviour, IPickupItem, IInteractable
 {
     public enum EState
@@ -76,5 +81,34 @@ public class SoupController : MonoBehaviour, IPickupItem, IInteractable
         _flavours.Clear();
         foreach (var flavour in flavours)
             _flavours.Add(flavour);
+    }
+
+    public ISoupData Consume()
+    {
+        var soupData = SoupData.Create(_flavours);
+
+        // TODO : object pool maybe
+        Destroy(this.gameObject);
+
+        return soupData;
+    }
+
+    // HELPER CLASSES
+    private struct SoupData : ISoupData
+    {
+        public List<EFlavour> Flavours { get; private set; }
+
+        public static SoupData Create(List<EFlavour> flavours)
+        {
+            // Clone in-case the original reference is modified or destroyed
+            var flavourListClone = new List<EFlavour>();
+            foreach (var flavour in flavours)
+                flavourListClone.Add(flavour);
+
+            return new()
+            {
+                Flavours = flavourListClone,
+            };
+        }
     }
 }
