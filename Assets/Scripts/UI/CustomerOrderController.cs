@@ -30,6 +30,20 @@ public class CustomerOrderController : MonoBehaviour
             Instantiate(uiPrefab.UI, _flavourUIParent);
         }
     }
+
+    public bool IsFlavourMatched(List<EFlavour> flavoursToCheck)
+    {
+        if (flavoursToCheck.Count != _flavours.Count)
+            return false;
+
+        foreach (var flavour in _flavours)
+        {
+            if (!flavoursToCheck.Contains(flavour))
+                return false;
+        }
+
+        return true;
+    }
 }
 
 // HELPERS

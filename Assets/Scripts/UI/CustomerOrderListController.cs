@@ -31,22 +31,26 @@ public class CustomerOrderListController : MonoBehaviour
         customerOrderInstance.SetFlavours(flavours);
     }
 
-    public void FulfillOrder(ISoupData soupData)
+    public bool TryFulfillOrder(ISoupData soupData)
     {
         CustomerOrderController matchedOrder = null;
         foreach (var order in GetComponentsInChildren<CustomerOrderController>())
         {
-            // TODO : check which order matches
-            matchedOrder = order;
-            break;
+            if (order.IsFlavourMatched(soupData.Flavours))
+            {
+                matchedOrder = order;
+                break;
+            }
         }
 
         if (matchedOrder == null)
-            return;
+            return false;
 
         // TODO : object pool?
         Destroy(matchedOrder.gameObject);
 
         // TODO : score
+
+        return true;
     }
 }
