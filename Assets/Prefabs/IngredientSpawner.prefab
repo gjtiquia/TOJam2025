@@ -160,4 +160,5 @@ MonoBehaviour:
   - {fileID: 4449100188821899316, guid: 25e78c586ead69c46aeff8c8d49466bf, type: 3}
   - {fileID: 4449100188821899316, guid: a46cb85acff3bb34bb42ad025ceb31a3, type: 3}
   - {fileID: 4449100188821899316, guid: f124509a9badfb14790e21fa1e71efea, type: 3}
+  - {fileID: 4449100188821899316, guid: 18dcf21a4d3dea04baa58512e8d23270, type: 3}
   _boxCollider: {fileID: 2490019065582898136}
