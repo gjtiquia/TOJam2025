@@ -22,5 +22,5 @@ Fill as many orders as you can before time runs out!
 
 ---
 
-A submission for [TOJam 2025](https://www.tojam.ca/)
+By GJ Tiqia & Grace Bao for [TOJam 2025](https://www.tojam.ca/)
 
