@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5166030734415261098, guid: 39de04f57e0cde7498f6eda81c581ba8, type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     - target: {fileID: 7105261494362951314, guid: 39de04f57e0cde7498f6eda81c581ba8, type: 3}
       propertyPath: m_Name
       value: Paprika_Ingredient
